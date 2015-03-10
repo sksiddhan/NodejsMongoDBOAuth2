@@ -1,4 +1,4 @@
-var MongoDbDAO = require('../routes/MongoDbDAO'),
+var mongoDbDAO = require('../routes/MongoDbDAO'),
     model = module.exports;
 
 //

@@ -1,14 +1,61 @@
 <html>
 	<title>Api Test Page</title>
-	<head></head>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="/scripts/jquery.base64.js"></script>
+		<script >
+			var accessToken = '';
+			var appUrl = window.location.origin || window.location.protocol + '//' + window.location.host;
+			var dec = enc = $('#encode');
+			var scer = $.base64.encode("thom:nightworld");
+			$(document).ready(function() {
+				$.ajax({
+					type : 'POST',
+					url : appUrl + '/oauth/token',
+					data : ({
+						grant_type : 'password',
+						username : 'thomseddon',
+						password : 'nightworld'
+					}),
+					dataType : 'json',
+					//contentType : "application/json; charset=utf-8",
+					headers : {
+						contentType:"application/x-www-form-urlencoded",
+						Authorization : "Basic " + scer
+						
+					},
+					error : function() {
+						$('#divInfo').html('<p>An error has occurred</p>');
+					},
+					success : function(data) {
+						accessToken = data.access_token;
+					},
+				});
+			});
+			function CallApi() {
+				$.ajax({
+					type : 'POST',
+					url : appUrl + '/index',
+					data : {},
+					dataType : 'json',
+					contentType : "application/json; charset=utf-8",
+					headers : {
+						Authorization : 'Bearer ' + accessToken
+					},
+					error : function() {
+						$('#divInfo').html('<p>An error has occurred</p>');
+					},
+
+					success : function(data) {
+						$('#divInfo').html(data);
+					},
+				});
+			}
+		</script>
+	</head>
 	<body>
-		<a href="createCollection.html">Create Collection Test</a>
-		<br>
-		<a href="getCollectionList.html">Get Collection List Test</a>
-		<br>
-		<a href="getCollectionColumns.html">Get Collection Columns Test</a>
-		<br>
-		<a href="getCollectionValueByCollectionName.html">Get Collection Value By Collection Name Test</a>
+		<input type="button"  value="Call Api" onclick="javascript:CallApi();"/>
+		<div id="divInfo"></div>
 	</body>
 
 </html>

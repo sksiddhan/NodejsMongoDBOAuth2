@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var oauthserver = require('node-oauth2-server');
 var app = express();
 
-var routeIndex = require('./routes/index');
+var routes = require('./routes/index');
 
 // TODO; refactor DAO Code
 var MongoDbDAO = require('./routes/MongoDbDAO');
@@ -35,7 +35,7 @@ app.oauth = oauthserver({
 	accessTokenLifetime : 3600,
 	refreshTokenLifetime : 1209600,
 	authCodeLifetime : 30,
-	continueAfterResponse : true
+	//continueAfterResponse : true
 });
 
 // Handle token grant requests
@@ -52,7 +52,7 @@ app.use(app.oauth.authorise(), function(req, res, next) {
 	next();
 });
 
-app.use('/', routeIndex);
+app.use('/', routes);
 
 /// error handlers
 app.use(app.oauth.errorHandler());
