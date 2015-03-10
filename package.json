@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_mongodb_oauth2",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "debug": "^2.1.0",
+    "express": "latest",
+    "mongodb": "latest",
+    "jade": "latest",
+    "body-parser": "~1.0.0",
+    "node-oauth2-server":"latest"
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {}
+}
