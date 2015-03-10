@@ -35,7 +35,7 @@ app.oauth = oauthserver({
 	accessTokenLifetime : 3600,
 	refreshTokenLifetime : 1209600,
 	authCodeLifetime : 30,
-	continueAfterResponse : true
+	//continueAfterResponse : true
 });
 
 // Handle token grant requests
