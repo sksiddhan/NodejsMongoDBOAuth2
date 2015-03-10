@@ -38,16 +38,6 @@ model.grantTypeAllowed = function(clientId, grantType, callback) {
 	});
 
 };
-var authorizedClientIds = ['s6BhdRkqt3', 'toto'];
-model.grantTypeAllowed1 = function(clientId, grantType, callback) {
-	console.log('in grantTypeAllowed (clientId: ' + clientId + ', grantType: ' + grantType + ')');
-
-	if (grantType === 'password') {
-		return callback(false, authorizedClientIds.indexOf(clientId) >= 0);
-	}
-
-	callback(false, true);
-};
 
 model.saveAccessToken = function(token, clientId, expires, userId, callback) {
 	console.log('in saveAccessToken (token: ' + token + ', clientId: ' + clientId + ', userId: ' + userId + ', expires: ' + expires + ')');

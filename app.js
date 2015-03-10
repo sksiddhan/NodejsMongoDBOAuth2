@@ -53,6 +53,7 @@ app.use(app.oauth.authorise(), function(req, res, next) {
 });
 
 app.use('/', routes);
+app.use('/index', routes);
 
 /// error handlers
 app.use(app.oauth.errorHandler());
