@@ -32,10 +32,10 @@ app.oauth = oauthserver({
 	grants : ['auth_code', 'password'],
 	debug : true,
 	passthroughErrors : true,
-	accessTokenLifetime : 3600,
-	refreshTokenLifetime : 1209600,
-	authCodeLifetime : 30,
-	//continueAfterResponse : true
+	//accessTokenLifetime : 3600,
+	//refreshTokenLifetime : 1209600,
+	//authCodeLifetime : 30,
+	continueAfterResponse : true
 });
 
 // Handle token grant requests
@@ -50,42 +50,12 @@ app.use(app.oauth.authorise(), function(req, res, next) {
 	console.log(" parameters : " + JSON.stringify(req.body));
 	console.log("*****************************");
 	next();
+	 //res.send('Secret area');
 });
 
-app.use('/', routes);
+//app.use('/', routes);
 
 /// error handlers
 app.use(app.oauth.errorHandler());
-
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
-});
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-	app.use(function(err, req, res, next) {
-		console.log(err);
-		res.status(err.status || 500);
-		res.render('error', {
-			message : err.message,
-			error : err
-		});
-	});
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-	console.log(err);
-	res.status(err.status || 500);
-	res.render('error', {
-		message : err.message,
-		error : err
-	});
-});
 
 module.exports = app;

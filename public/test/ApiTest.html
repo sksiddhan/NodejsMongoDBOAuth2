@@ -11,14 +11,13 @@
 			$(document).ready(function() {
 				$.ajax({
 					type : 'POST',
+					//contentType : "application/json; charset=utf-8",
 					url : appUrl + '/oauth/token',
-					data : ({
+					data :({
 						grant_type : 'password',
 						username : 'thomseddon',
 						password : 'nightworld'
 					}),
-					dataType : 'json',
-					//contentType : "application/json; charset=utf-8",
 					headers : {
 						contentType:"application/x-www-form-urlencoded",
 						Authorization : "Basic " + scer
@@ -28,6 +27,7 @@
 						$('#divInfo').html('<p>An error has occurred</p>');
 					},
 					success : function(data) {
+						console.log(data);
 						accessToken = data.access_token;
 					},
 				});
@@ -37,15 +37,15 @@
 					type : 'POST',
 					url : appUrl + '/index',
 					data : {},
-					dataType : 'json',
-					contentType : "application/json; charset=utf-8",
+					//dataType : 'json',
+					//contentType : "application/json; charset=utf-8",
 					headers : {
+						contentType:"application/x-www-form-urlencoded",
 						Authorization : 'Bearer ' + accessToken
 					},
 					error : function() {
 						$('#divInfo').html('<p>An error has occurred</p>');
 					},
-
 					success : function(data) {
 						$('#divInfo').html(data);
 					},
