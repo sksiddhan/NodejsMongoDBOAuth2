@@ -21,7 +21,6 @@
 					headers : {
 						contentType:"application/x-www-form-urlencoded",
 						Authorization : "Basic " + scer
-						
 					},
 					error : function() {
 						$('#divInfo').html('<p>An error has occurred</p>');
@@ -35,13 +34,11 @@
 			function CallApi() {
 				$.ajax({
 					type : 'POST',
-					url : appUrl + '/index',
+					url : appUrl,
 					data : {},
-					//dataType : 'json',
-					//contentType : "application/json; charset=utf-8",
+					contentType : "application/json; charset=utf-8",
 					headers : {
-						contentType:"application/x-www-form-urlencoded",
-						Authorization : 'Bearer ' + accessToken
+						Authorization : 'Bearer ' + accessToken 
 					},
 					error : function() {
 						$('#divInfo').html('<p>An error has occurred</p>');

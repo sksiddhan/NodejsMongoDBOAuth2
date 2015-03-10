@@ -32,9 +32,9 @@ app.oauth = oauthserver({
 	grants : ['auth_code', 'password'],
 	debug : true,
 	passthroughErrors : true,
-	//accessTokenLifetime : 3600,
-	//refreshTokenLifetime : 1209600,
-	//authCodeLifetime : 30,
+	accessTokenLifetime : 3600,
+	refreshTokenLifetime : 1209600,
+	authCodeLifetime : 30,
 	continueAfterResponse : true
 });
 
@@ -50,10 +50,9 @@ app.use(app.oauth.authorise(), function(req, res, next) {
 	console.log(" parameters : " + JSON.stringify(req.body));
 	console.log("*****************************");
 	next();
-	 //res.send('Secret area');
 });
 
-//app.use('/', routes);
+app.use('/', routes);
 
 /// error handlers
 app.use(app.oauth.errorHandler());
